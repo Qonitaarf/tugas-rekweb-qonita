@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL as FacadesURL;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if (! $this -> app->environment('local')) {
+            URL::forceScheme('https');
+        }
     }
 
     /**
